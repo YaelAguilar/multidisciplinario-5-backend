@@ -4,8 +4,7 @@ import { LogoutUser } from '../../application/useCases/LogoutUser';
 import { UserController } from '../controllers/UserController';
 import { TypeORMUserRepository } from '../repositories/TypeORMUserRepository';
 import { DataSource } from 'typeorm';
-import { User as UserEntity } from '../entities/UserEntity';
-import config from '../ormconfig'; // Asegúrate de importar config correctamente
+import config from '../ormconfig';
 import dotenv from 'dotenv';
 
 dotenv.config();
