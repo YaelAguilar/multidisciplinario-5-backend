@@ -3,15 +3,12 @@ import { LoginUser } from '../../application/useCases/LoginUser';
 import { LogoutUser } from '../../application/useCases/LogoutUser';
 import { UserController } from '../controllers/UserController';
 import { TypeORMUserRepository } from '../repositories/TypeORMUserRepository';
-import { DataSource } from 'typeorm';
-import config from '../ormconfig';
+import { AppDataSource } from '../../config/db';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 // Inicializa el DataSource
-const AppDataSource = new DataSource(config);
-
 AppDataSource.initialize()
   .then(() => {
     console.log('Data Source has been initialized!');

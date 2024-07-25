@@ -1,13 +1,10 @@
 import 'reflect-metadata';
 import express from 'express';
-import { DataSource } from 'typeorm';
-import config from './infrastructure/ormconfig';
+import { AppDataSource } from './config/db';
 import userRoutes from './infrastructure/routes/userRoutes';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
-const AppDataSource = new DataSource(config);
 
 async function bootstrap() {
   try {
