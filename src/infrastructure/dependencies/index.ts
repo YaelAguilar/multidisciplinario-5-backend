@@ -8,15 +8,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Inicializa el DataSource
-AppDataSource.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err);
-  });
-
 // Inicializa el repositorio de usuarios
 const userRepository = new TypeORMUserRepository(AppDataSource);
 

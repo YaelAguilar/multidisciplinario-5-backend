@@ -11,6 +11,7 @@ export class UserController {
   ) {}
 
   async register(req: Request, res: Response): Promise<void> {
+    console.log('Register endpoint hit'); // Log para verificar si el endpoint se está llamando
     const { name, email, password } = req.body;
     const result = await this.registerUser.execute(name, email, password);
     if (result.success) {
@@ -21,6 +22,7 @@ export class UserController {
   }
 
   async login(req: Request, res: Response): Promise<void> {
+    console.log('Login endpoint hit'); // Log para verificar si el endpoint se está llamando
     const { email, password } = req.body;
     const result = await this.loginUser.execute(email, password);
     if (result.success) {
@@ -31,6 +33,7 @@ export class UserController {
   }
 
   async logout(req: Request, res: Response): Promise<void> {
+    console.log('Logout endpoint hit'); // Log para verificar si el endpoint se está llamando
     const result = await this.logoutUser.execute();
     res.json({ message: result.message });
   }

@@ -1,17 +1,16 @@
 import 'reflect-metadata';
-import express from 'express';
+import express, { Express } from 'express';
 import { AppDataSource } from './config/db';
 import userRoutes from './infrastructure/routes/userRoutes';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-async function bootstrap() {
+async function bootstrap(app: Express) {
   try {
     await AppDataSource.initialize();
     console.log('Data Source has been initialized!');
 
-    const app = express();
     app.use(express.json());
 
     // Rutas de usuario
