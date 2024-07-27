@@ -11,28 +11,28 @@ export class RegisterUser {
   ) {}
 
   async execute(name: string, email: string, password: string): Promise<{ success: boolean; message: string }> {
-    console.log('RegisterUser execute called'); // Log para verificar la ejecución
+    console.log('RegisterUser execute called');
     // Verificar que todos los campos estén presentes
     if (!name || !email || !password) {
-      console.log('All fields are required'); // Log de error
+      console.log('All fields are required');
       return { success: false, message: 'All fields (name, email, password) are required' };
     }
 
     // Verificar si el correo ya existe
     const existingUser = await this.userRepository.findByEmail(email);
     if (existingUser) {
-      console.log('Email already exists'); // Log de error
+      console.log('Email already exists');
       return { success: false, message: 'Email already exists' };
     }
 
     // Hashear la contraseña
     const hashedPassword = await this.passwordHasher.hash(password);
-    console.log('Password hashed'); // Log para verificar el hash de la contraseña
+    console.log('Password hashed');
 
     // Crear y guardar el usuario
     const user = new User(this.uuidGenerator.generate(), name, email, hashedPassword);
     await this.userRepository.save(user);
-    console.log('User saved'); // Log para verificar el guardado del usuario
+    console.log('User saved');
 
     return { success: true, message: 'User registered successfully' };
   }

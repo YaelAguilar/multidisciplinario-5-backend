@@ -1,6 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { createPool, Pool } from 'mysql2/promise';
 import { User } from '../auth/infrastructure/entities/UserEntity';
+import { Kit } from '../kitManagement/infrastructure/entities/KitEntity';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,7 +13,7 @@ const typeORMConfig: DataSourceOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [User],
+  entities: [User, Kit],
   synchronize: true,
 };
 

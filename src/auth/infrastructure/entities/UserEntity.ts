@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
+import { Kit } from '../../../kitManagement/infrastructure/entities/KitEntity';
 
 @Entity('users')
 export class User {
@@ -12,7 +13,10 @@ export class User {
   email: string;
 
   @Column()
-  password: string; // Hashed password
+  password: string;
+
+  @OneToMany(() => Kit, (kit) => kit.user)
+  kits?: Kit[];
 
   constructor(id: string, name: string, email: string, password: string) {
     this.id = id;
