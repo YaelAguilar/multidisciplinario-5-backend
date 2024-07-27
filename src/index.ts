@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express, { Express } from 'express';
 import { AppDataSource } from './config/db';
-import userRoutes from './infrastructure/routes/userRoutes';
+import userRoutes from './auth/infrastructure/routes/userRoutes';
 import dotenv from 'dotenv';
 
 dotenv.config();

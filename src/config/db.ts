@@ -1,6 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { createPool, Pool } from 'mysql2/promise';
-import { User } from '../infrastructure/entities/UserEntity';
+import { User } from '../auth/infrastructure/entities/UserEntity';
 import dotenv from 'dotenv';
 
 dotenv.config();

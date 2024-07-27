@@ -3,7 +3,7 @@ import { LoginUser } from '../../application/useCases/LoginUser';
 import { LogoutUser } from '../../application/useCases/LogoutUser';
 import { UserController } from '../controllers/UserController';
 import { TypeORMUserRepository } from '../repositories/TypeORMUserRepository';
-import { AppDataSource } from '../../config/db';
+import { AppDataSource } from '../../../config/db';
 import { BcryptPasswordHasher } from '../services/BcryptPasswordHasher';
 import { BcryptPasswordComparer } from '../services/BcryptPasswordComparer';
 import { UUIDV4Generator } from '../services/UUIDV4Generator';
