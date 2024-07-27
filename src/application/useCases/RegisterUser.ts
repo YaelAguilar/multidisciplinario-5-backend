@@ -1,10 +1,14 @@
 import { UserRepository } from '../../domain/repositories/UserRepository';
 import { User } from '../../domain/entities/User';
-import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
+import { PasswordHasher } from '../../domain/services/PasswordHasher';
+import { UUIDGenerator } from '../../domain/services/UUIDGenerator';
 
 export class RegisterUser {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    private userRepository: UserRepository,
+    private passwordHasher: PasswordHasher,
+    private uuidGenerator: UUIDGenerator
+  ) {}
 
   async execute(name: string, email: string, password: string): Promise<{ success: boolean; message: string }> {
     console.log('RegisterUser execute called'); // Log para verificar la ejecución
@@ -22,11 +26,11 @@ export class RegisterUser {
     }
 
     // Hashear la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await this.passwordHasher.hash(password);
     console.log('Password hashed'); // Log para verificar el hash de la contraseña
 
     // Crear y guardar el usuario
-    const user = new User(uuidv4(), name, email, hashedPassword);
+    const user = new User(this.uuidGenerator.generate(), name, email, hashedPassword);
     await this.userRepository.save(user);
     console.log('User saved'); // Log para verificar el guardado del usuario
 
