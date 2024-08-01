@@ -3,6 +3,7 @@ import { createPool, Pool } from 'mysql2/promise';
 import { User } from '../auth/infrastructure/entities/UserEntity';
 import { Kit } from '../kitManagement/infrastructure/entities/KitEntity';
 import dotenv from 'dotenv';
+import { SensorEntity } from '../sensorManagement/infrastructure/entities/SensorEntity';
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ const typeORMConfig: DataSourceOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [User, Kit],
+  entities: [User, Kit, SensorEntity],
   synchronize: true,
 };
 

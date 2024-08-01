@@ -3,6 +3,7 @@ import express, { Express } from 'express';
 import { AppDataSource } from './config/db';
 import userRoutes from './auth/infrastructure/routes/userRoutes';
 import kitRoutes from './kitManagement/infrastructure/routes/kitRoutes';
+import sensorRoutes from './sensorManagement/infrastructure/routes/sensorRoutes';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,6 +19,8 @@ async function bootstrap(app: Express) {
     app.use('/user', userRoutes);
     // Rutas de kit
     app.use('/kit', kitRoutes);
+    // Rutas de sensor
+    app.use('/sensor', sensorRoutes);
 
     console.log('Server initialized successfully');
   } catch (error) {
