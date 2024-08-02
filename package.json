@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^3.0.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -19,6 +20,8 @@
     "mqtt": "^5.9.1",
     "mysql2": "^3.10.3",
     "reflect-metadata": "^0.2.2",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
     "typeorm": "^0.3.20",
     "uuid": "^10.0.0"
   },

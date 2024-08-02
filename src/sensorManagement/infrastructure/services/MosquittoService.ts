@@ -1,11 +1,12 @@
 import mqtt, { MqttClient } from 'mqtt';
 import { SensorRepository } from '../../domain/repositories/SensorRepository';
 import { Sensor } from '../../domain/entities/Sensor';
+import { Server as SocketIOServer } from 'socket.io';
 
 export class MosquittoService {
   private client: MqttClient;
 
-  constructor(private sensorRepository: SensorRepository) {
+  constructor(private sensorRepository: SensorRepository, private io: SocketIOServer) {
     this.client = mqtt.connect('mqtt://broker.emqx.io:1883');
     this.client.on('connect', () => {
       console.log('Connected to Mosquitto');
@@ -38,6 +39,9 @@ export class MosquittoService {
     try {
       await this.sensorRepository.save(sensor);
       console.log('Sensor data saved successfully');
+
+      // Emitir datos a través de Socket.IO
+      this.io.emit('sensor-data', sensor);
     } catch (error) {
       console.error('Error saving sensor data:', error);
     }
