@@ -45,7 +45,7 @@ export class MosquittoService {
       this.io.emit('sensor-data', sensor);
 
       // Verificar si la distancia es igual o menor a 19 y enviar webhook
-      if (sensor.type === 'distancia' && parseFloat(sensor.value) <= 19) {
+      if (sensor.type === 'distancia' && parseFloat(sensor.value) >= 21) {
         await this.sendWebhook('Poca comida, alimentando a su hamster');
       }
     } catch (error) {
